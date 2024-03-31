@@ -13,9 +13,11 @@
 // ==/UserScript==
  
 setTimeout(() => {
+  
   let $$ = (s) => [document.querySelector(s)];
   $$('#messaging .scaffold-layout__content')[0].setAttribute('style', 'display: unset');
   $$('#main')[0].setAttribute('style', 'height: 100vh');
-  $$('.scaffold-layout__aside')[0].setAttribute('style', 'display: none')
+  $$('.scaffold-layout__aside')[0].setAttribute('style', 'display: none');
+  $$('.premium-upsell-link')[0].setAttribute('style', 'display: none');
  
 }, 3000)
