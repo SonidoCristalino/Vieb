@@ -6,10 +6,10 @@ wonderfull browser.
 
 Also have some `userscripts` to use some apps like Whatsapp.web or Linkedin in a free banner way. 
 
-# You don't know about Vieb?
+## You don't know about Vieb?
 
 Please, check [Vieb official repo](https://github.com/Jelmerro/Vieb)
 
-# How do you use this config files?
+## How do you use this config files?
 
 Please, first install Vieb. Then, make a dir in `~/.vieb` and then clone this repo inside of it. 
