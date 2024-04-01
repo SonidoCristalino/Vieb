@@ -10,6 +10,6 @@ Also have some `userscripts` to use some apps like Whatsapp.web or Linkedin in a
 
 Please, check [Vieb official repo](https://github.com/Jelmerro/Vieb)
 
-## How do you use this config files?
+## How can you use this config files?
 
 Please, first install Vieb. Then, make a dir in `~/.vieb` and then clone this repo inside of it. 
