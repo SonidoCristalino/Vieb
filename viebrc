@@ -6,6 +6,7 @@ set favoritepages=
 set favoritepages+=youtube.com
 set favoritepages+=https://www.smn.gob.ar/
 set favoritepages+=https://www.linkedin.com/messaging/
+set favoritepages+=https://www.linkedin.com/feed/
 set favoritepages+=https://emiliano-aws-v2.signin.aws.amazon.com/console
 set followchars=custom:ASDFGHJKLWOP
 set followelement=
