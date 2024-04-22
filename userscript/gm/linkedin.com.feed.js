@@ -1,15 +1,26 @@
 // ==UserScript==
-// @name        f*ck linkedin
+// @name        F*ck Banner LinkedIn
 // @namespace   Violentmonkey Scripts
-// @match       https://www.linkedin.com/feed/
+// @match       https://www.linkedin.com/feed/* 
 // @grant       none
 // @version     1.0
-// @author      -
-// @description 4/27/2022, 3:20:07 PM
+// @author      Me
+// @description 4/21/2024, 3:20:07 PM
 // @license     MIT
-// ==/UserScript==
+// @description Try to improve LinkedIn feed removing right banner and expand feed width
  
-(function() {
-    'use strict';    
-    document.getElementById('main').remove();    
-})();
+// @inject-into document
+// @noframes
+// ==/UserScript==
+
+setTimeout(() => {
+  
+    // Clearing navigation upgrading the feeds width 
+    let $$ = (s) => [document.querySelector(s)];
+    $$('.scaffold-layout__main')[0].setAttribute('style', 'width: 90vh');
+    $$('.scaffold-layout__aside')[0].setAttribute('style', 'display: none');
+    
+    // Remove inecessary Premium link
+    $$('.premium-upsell-link')[0].setAttribute('style', 'display: none');
+
+}, 3000)
