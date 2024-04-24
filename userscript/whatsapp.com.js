@@ -1,8 +1,8 @@
-// We remove the search bar
-// document.querySelector("#side > div._3gYev").remove();
+// Remove the search bar
 document.querySelector("#side > div._ak9t").remove();
 
-// We remove all the chat header 
-// document.querySelector("#app > div > div.two._1jJ70 > div._2Ts6i._3RGKj > header").remove();
+// Remove all the chat header 
 document.querySelector("#app > div > div.two._aigs > div._aigv._aigw > header").remove();
 
+// Remove popup helper chat
+document.querySelector("#wa-popovers-bucket").remove();
