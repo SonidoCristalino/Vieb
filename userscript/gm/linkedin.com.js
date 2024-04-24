@@ -20,6 +20,7 @@ setTimeout(() => {
     $$(".scaffold-layout__main")[0].setAttribute("style", "width: 90vh");
     $$(".scaffold-layout__aside")[0].setAttribute("style", "display: none");
     
+    // Doing a better chat height
     $$('#messaging .scaffold-layout__content')[0].setAttribute('style', 'display: unset');
     $$('#main')[0].setAttribute('style', 'height: 100vh');
 
