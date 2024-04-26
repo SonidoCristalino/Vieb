@@ -10,6 +10,12 @@ Also have some `userscripts` to use some apps like Whatsapp.web or Linkedin in a
 
 Please, check [Vieb official repo](https://github.com/Jelmerro/Vieb)
 
+## Do you want some help in Vieb?
+
+Check this places: 
+    1. Inside Vieb session you can use this command: `:help!` 
+    2. Within terminal you can use `help --vieb` to see more commands options. 
+
 ## How can you use this config files?
 
     1. Please, first install Vieb. 
