@@ -5,7 +5,6 @@
 // @grant       none
 // @version     1.0
 // @author      Me
-// @description 4/21/2024, 3:20:07 PM
 // @license     MIT
 // @description Try to improve LinkedIn feed removing right banner and expand feed width
  
