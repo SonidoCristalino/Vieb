@@ -26,5 +26,7 @@ Check this places:
     4. If you already have your file configuration like `/home/username/.config/Vieb/viebrc`, please, change
        it name, just like `viebrc_bkp`.
     5. Do the same thing if you already have a directory named like `/home/username/.config/Vieb/userscript`. 
-    6. Enjoy it!
+    6. Also, edit your `vieb.desktop` (usually you can find it in `/usr/share/applications/`) and add the
+       following lines: `--autoplay-media=always --config-file=~/.vieb/viebrc`
+    7. Enjoy it!
 
