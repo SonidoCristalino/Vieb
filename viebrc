@@ -30,10 +30,11 @@ set sponsorblockcategories={"sponsor":"lime","intro":"cyan","outro":"blue","inte
 set suggesttopsites=0
 set timeoutlen=9000
 set userscript
-set windowtitle=""""""""'%app""""""""
+set windowtitle="""""""""'%app"""""""""
 
 " Mappings
 nunmap ;
+nmap <C-p> <p.start><startFollowCurrentTab>
 nmap N <nextSearchMatch>
 nmap n <previousSearchMatch>
 nmap <S-Space> <scrollPageUpHalf>
