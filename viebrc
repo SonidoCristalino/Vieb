@@ -3,7 +3,6 @@ set adblocker=update
 set clearhistoryinterval=1month
 set dialogconfirm=notifyblock
 set favoritepages=
-set favoritepages+=youtube.com
 set favoritepages+=https://www.smn.gob.ar/
 set favoritepages+=https://www.linkedin.com/messaging/
 set favoritepages+=https://www.linkedin.com/jobs/collections/recommended/
