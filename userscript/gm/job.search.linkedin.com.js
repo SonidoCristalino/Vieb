@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        F*ck Banner LinkedIn
 // @namespace   Violentmonkey Scripts
-// @match       http*://www.linkedin.com/jobs/search/*
+// @match       https://www.linkedin.com/jobs/collections/recommended/*
 // @grant       none
 // @version     1.0
 // @author      Me
