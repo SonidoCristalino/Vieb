@@ -6,6 +6,7 @@ set favoritepages=
 set favoritepages+=https://www.smn.gob.ar/
 set favoritepages+=https://www.linkedin.com/messaging/
 set favoritepages+=https://www.linkedin.com/jobs/collections/recommended/
+set favoritepages+=https://www.linkedin.com/jobs/search/?alertAction=viewjobs&f_AL=true&origin=JOB_SEARCH_PAGE_JOB_FILTER
 set favoritepages+=https://emiliano-aws-v2.signin.aws.amazon.com/console
 set favoritepages+=https://www.reddit.com/r/merval/search/?sort=hot
 set followchars=custom:ASDFGHJKLWOP
