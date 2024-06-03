@@ -19,6 +19,7 @@ set followelement+=media
 set followelement+=image
 set modifiers=
 set modifiers+=<Shift>
+set newtaburl=~/.config/scripts/startpage/index.html
 set notificationduration=10000
 set notificationposition=topleft
 set passthroughkeys={".*youtube\\.com.*":"<Right><Left><Space><lt>"}
@@ -30,7 +31,6 @@ set sponsorblockcategories={"sponsor":"lime","intro":"cyan","outro":"blue","inte
 set suggesttopsites=0
 set timeoutlen=9000
 set userscript
-set windowtitle="""""""""'%app"""""""""
 
 " Mappings
 map <C-p> <p.start><startFollowCurrentTab>
