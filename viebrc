@@ -35,11 +35,13 @@ set userscript
 " Mappings
 map <C-p> <p.start><startFollowCurrentTab>
 nunmap ;
+nunmap D
 nmap N <nextSearchMatch>
 nmap n <previousSearchMatch>
 nmap <S-Space> <scrollPageUpHalf>
 nmap <Space> <scrollPageDownHalf>
 nmap <C-D> <pageToClipboard><:tabnew><openFromClipboard>
+punmap D
 pmap N <nextSearchMatch>
 pmap n <previousSearchMatch>
 
