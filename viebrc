@@ -23,6 +23,7 @@ set newtaburl=~/.config/scripts/startpage/index.html
 set notificationduration=10000
 set notificationposition=topleft
 set passthroughkeys={".*youtube\\.com.*":"<Right><Left><Space><lt>"}
+set passthroughkeys={".*odysee\\.com.*":"<Right><Left><Space><lt>"}
 set permissionmediadevices=allow
 set permissionmicrophone=allow
 set spelllang=
