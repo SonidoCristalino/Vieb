@@ -1,53 +1,55 @@
 // ==UserScript==
-// @name         Desactivar Autoscroll en ChatGPT
+// @name         F*ck ChatGPT
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Desactiva el autoscroll en ChatGPT
-// @author       Tu Nombre
+// @description  Unactive auto-scroll and active widescreen
+// @author       Me
 // @match        https://chat.openai.com/*
 // @match        https://chatgpt.com/*
 // @grant        none
 // ==/UserScript==
 
+// Active Widescreen 
 document.styleSheets[0].insertRule('.text-token-text-primary>div>div{max-width:100%!important}',0);
+
+//Clean local storage to improve chatGPT
+localStorage.clear();
+sessionStorage.clear();
+
+// // seleccionamos la lista de todos los divs que son preguntas: 
+// var divs = document.querySelectorAll('div[data-message-author-role="user"]');
+
+// // Obtener el último div de la NodeList
+// var ultimoDiv = divs[divs.length - 1];
+
+// // Calcular la altura del último div medida desde la parte inferior del documento
+// var alturaDesdeParteInferior = document.documentElement.scrollHeight - ultimoDiv.getBoundingClientRect().bottom;
+
+// targetDiv = ultimoDiv.querySelector(':scope > div');
+// targetDiv.scrollTop = 0;
+
 
 (function() {
     'use strict';
 
-    // Función que previene el autoscroll
-    function preventAutoscroll() {
-        console.log('preventAutoscroll function called');
+    function alternateVisibility() {
         
-        // Selecciona todos los elementos con clases que comienzan con "react-scroll-to-bottom--css-"
-        // const chatContainers = document.querySelectorAll('[class^="react-scroll-to-bottom--css-"]');
-        const chatContainers = document.querySelectorAll('[class^="w-full text-token-text-primary"]');
-        console.log('Found chat containers:', chatContainers);
-
-        if (chatContainers.length > 0) {
-            // Selecciona el último contenedor
-            const chatContainer = chatContainers[chatContainers.length - 1];
-            console.log('Selected chat container:', chatContainer);
-
-            // Desactiva el comportamiento de desplazamiento automático
-            chatContainer.scrollIntoView = function() {
-                console.log('scrollIntoView called');
-            };
-        } else {
-            console.log('No chat containers found');
+        var answersList = document.querySelectorAll('div[data-message-author-role="user"]');
+        var lastAnswer  = answersList[answersList.length - 1];
+        
+        if (lastAnswer) {
+            lastAnswer.scrollIntoView();
+            // lastAnswer.setAttribute('tabindex', '0');
+            // lastAnswer.focus();
+            // window.scrollBy(0,-50);
         }
+
     }
 
-    // Espera a que la página se cargue completamente
-    window.addEventListener('load', () => {
-        console.log('Page loaded');
-        preventAutoscroll();
+    document.addEventListener('keydown', function(event) {
+        if (event.altKey && event.shiftKey && event.key === 'M') {
+            alternateVisibility();
+        }
     });
 
-    // También puedes observar cambios en el DOM por si el contenido se carga dinámicamente
-    const observer = new MutationObserver(() => {
-        console.log('Mutation observed');
-        preventAutoscroll();
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
 })();
-
