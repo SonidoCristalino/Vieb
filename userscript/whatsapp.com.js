@@ -1,11 +1,15 @@
+//      ██╗    ██╗██╗  ██╗ █████╗ ████████╗███████╗ █████╗ ██████╗ ██████╗ 
+//      ██║    ██║██║  ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔══██╗
+//      ██║ █╗ ██║███████║███████║   ██║   ███████╗███████║██████╔╝██████╔╝
+//      ██║███╗██║██╔══██║██╔══██║   ██║   ╚════██║██╔══██║██╔═══╝ ██╔═══╝ 
+//      ╚███╔███╔╝██║  ██║██║  ██║   ██║   ███████║██║  ██║██║     ██║     
+//       ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝     
+
 // ###############################################################################
-// #                                                                             #
 // #                             Elements Removal                                #
-// #                                                                             #
 // ###############################################################################
 
-// To remove an element, it must be selected using the devtools and then copied
-// using the "Copy full XPath" option.
+// Select an element using "Copy full XPath" option through DevTools
 
 // Search bar
 document.querySelector("#side > div._ak9t").remove();
@@ -24,9 +28,7 @@ document.evaluate('/html/body/div[1]/div/div/div/header',
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.remove();
 
 // ###############################################################################
-// #                                                                             #
 // #                             Elements Modifications                          #
-// #                                                                             #
 // ###############################################################################
 
 // The margin of the archived chats is removed so that it does not overlap with
@@ -36,9 +38,7 @@ document.evaluate('/html/body/div[1]/div/div/div/div[2]/div[1]',
     .singleNodeValue.setAttribute("style", "margin-left: 0px");
 
 // ###############################################################################
-// #                                                                             #
 // #                                 Functions                                   #
-// #                                                                             #
 // ###############################################################################
 
 // At the beginning unset Archive botton visibility 
