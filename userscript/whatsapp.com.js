@@ -1,14 +1,45 @@
-// Remove the search bar
+// ###############################################################################
+// #                                                                             #
+// #                             Elements Removal                                #
+// #                                                                             #
+// ###############################################################################
+
+// To remove an element, it must be selected using the devtools and then copied
+// using the "Copy full XPath" option.
+
+// Search bar
 document.querySelector("#side > div._ak9t").remove();
 
-// Remove all the chat header 
+// Chats header 
 document.querySelector("#app > div > div.two._aigs > div._aigv._aigw > header").remove();
 
-// Remove popup helper chat
+// Popup helper side chat
 document.querySelector("#wa-popovers-bucket").remove();
 
-// Remove chat filter 
+// Chat filter 
 document.querySelector("#side > div.x1ky8ojb.x78zum5.x1q0g3np.x1a02dak.x2lah0s.x3pnbk8.xfex06f.xeuugli.x2lwn1j.x1nn3v0j.x1ykpatu.x1swvt13.x1pi30zi").remove();
+
+// Left side bar
+document.evaluate('/html/body/div[1]/div/div/div/header', 
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.remove();
+
+// ###############################################################################
+// #                                                                             #
+// #                             Elements Modifications                          #
+// #                                                                             #
+// ###############################################################################
+
+// The margin of the archived chats is removed so that it does not overlap with
+// the chats behind. 
+document.evaluate('/html/body/div[1]/div/div/div/div[2]/div[1]',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "margin-left: 0px");
+
+// ###############################################################################
+// #                                                                             #
+// #                                 Functions                                   #
+// #                                                                             #
+// ###############################################################################
 
 // At the beginning unset Archive botton visibility 
 document.querySelector("#pane-side > button").setAttribute("style", "display: none");
