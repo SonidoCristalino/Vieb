@@ -33,6 +33,7 @@ set timeoutlen=9000
 set userscript
 
 " Mappings
+map <C-f> <toSearchMode>
 map <C-p> <p.start><startFollowCurrentTab>
 nunmap ;
 nunmap D
