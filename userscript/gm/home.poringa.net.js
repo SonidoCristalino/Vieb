@@ -8,7 +8,16 @@
 // @license     MIT
 // @description Delete sidebar banner from main page
  
+// @inject-into document
+// @noframes
 // ==/UserScript==
+
+// ██████╗  ██████╗ ██████╗ ██╗███╗   ██╗ ██████╗  █████╗ 
+// ██╔══██╗██╔═══██╗██╔══██╗██║████╗  ██║██╔════╝ ██╔══██╗
+// ██████╔╝██║   ██║██████╔╝██║██╔██╗ ██║██║  ███╗███████║
+// ██╔═══╝ ██║   ██║██╔══██╗██║██║╚██╗██║██║   ██║██╔══██║
+// ██║     ╚██████╔╝██║  ██║██║██║ ╚████║╚██████╔╝██║  ██║
+// ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝
 
 // Remove right banner 
 document.querySelector("#page > div:nth-child(4) > div > aside").remove();
