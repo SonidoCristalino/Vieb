@@ -21,7 +21,7 @@ Check this places:
 1. Please, first install [Vieb](https://vieb.dev/download)
 2. Then, clone this repository into your `$HOME` and after that, please change the dir name from
    `Vieb` to `.vieb`. 
-3. ¡WARNING!: You MUST change directory name from `Vieb` to `.vieb` and put it into `$HOME/` because, from
+3. **¡WARNING!**: You MUST change directory name from `Vieb` to `.vieb` and put it into `$HOME/` because, from
    `$HOME/.vieb` Vieb will take all the userscripts that are define inside. 
 5. If you already have your file configuration in another location like `$HOME/.config/Vieb/viebrc`, please,
    change it name, just like `viebrc_bkp`. Do the same thing if you already have a directory named like
