@@ -18,15 +18,15 @@ Check this places:
 
 ## How can you use this config files?
 
-1. Please, first install Vieb. 
-2. Then, clone this repository into your `~/home/username/` and after that change the dir name from
+1. Please, first install [Vieb](https://vieb.dev/download)
+2. Then, clone this repository into your `$HOME` and after that, please change the dir name from
    `Vieb` to `.vieb`. 
-3. Modify your Vieb icon .desktop, and modify the exec command to
-   `--config-file=~/home/username/.vieb/viebrc`
-4. If you already have your file configuration like `/home/username/.config/Vieb/viebrc`, please, change
-   it name, just like `viebrc_bkp`.
-5. Do the same thing if you already have a directory named like `/home/username/.config/Vieb/userscript`. 
-6. Also, edit your `vieb.desktop` (usually you can find it in `/usr/share/applications/`) and add the
+3. ¡WARNING!: You MUST change directory name from `Vieb` to `.vieb` and put it into `$HOME/` because, from
+   `$HOME/.vieb` Vieb will take all the userscripts that are define inside. 
+5. If you already have your file configuration in another location like `$HOME/.config/Vieb/viebrc`, please,
+   change it name, just like `viebrc_bkp`. Do the same thing if you already have a directory named like
+   `$HOME/.config/Vieb/userscript`. 
+7. Also, edit your `vieb.desktop` (usually you can find it in `/usr/share/applications/`) and add the
    following lines: `--autoplay-media=always --config-file=~/.vieb/viebrc`
-7. Enjoy it!
+8. Enjoy it!
 
