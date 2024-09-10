@@ -23,7 +23,8 @@ document.querySelector("#wa-popovers-bucket").remove();
 // Chat filter 
 document.querySelector("#side > div.x1ky8ojb.x78zum5.x1q0g3np.x1a02dak.x2lah0s.x3pnbk8.xfex06f.xeuugli.x2lwn1j.x1nn3v0j.x1ykpatu.x1swvt13.x1pi30zi").remove();
 
-// Left side bar
+// Left side Setting bar. 
+// NOTE: If you want the settings to appear (such as to mute the sounds of tabs) you must comment the line below.
 document.evaluate('/html/body/div[1]/div/div/div/header', 
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.remove();
 
