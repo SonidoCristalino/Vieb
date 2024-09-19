@@ -6,29 +6,18 @@
 // @author       Me
 // @match        https://chat.openai.com/*
 // @match        https://chatgpt.com/*
-// @grant        none
+// @grant        GM_addStyle
 // ==/UserScript==
 
-// Active Widescreen 
-document.styleSheets[0].insertRule('.text-token-text-primary>div>div{max-width:100%!important}',0);
+// ¡ATENTION: Widescreen functionality taken from: https://greasyfork.org/en/scripts/494023-chatgpt-widescreen-ultra-fast/code
 
-//Clean local storage to improve chatGPT
-localStorage.clear();
-sessionStorage.clear();
-
-// // seleccionamos la lista de todos los divs que son preguntas: 
-// var divs = document.querySelectorAll('div[data-message-author-role="user"]');
-
-// // Obtener el último div de la NodeList
-// var ultimoDiv = divs[divs.length - 1];
-
-// // Calcular la altura del último div medida desde la parte inferior del documento
-// var alturaDesdeParteInferior = document.documentElement.scrollHeight - ultimoDiv.getBoundingClientRect().bottom;
-
-// targetDiv = ultimoDiv.querySelector(':scope > div');
-// targetDiv.scrollTop = 0;
-
-
+// Expand general responses to 100% of the available width.
+GM_addStyle(".text-token-text-primary>div>div{max-width:100%!important}");
+ 
+// For "Which response do you prefer? [Response 1 | Response 2]": expand both responses to 50% of the available width.
+GM_addStyle(".min-w-fit>div{max-width:100%!important}");
+ 
+// Function to stop scroll when you ask something
 (function() {
     'use strict';
 
@@ -39,9 +28,6 @@ sessionStorage.clear();
         
         if (lastAnswer) {
             lastAnswer.scrollIntoView();
-            // lastAnswer.setAttribute('tabindex', '0');
-            // lastAnswer.focus();
-            // window.scrollBy(0,-50);
         }
 
     }
