@@ -15,7 +15,8 @@
 document.querySelector("#side > div._ak9t").remove();
 
 // Chats header 
-document.querySelector("#app > div > div.two._aigs > div._aigv._aigw > header").remove();
+document.evaluate('/html/body/div[1]/div/div/div[2]/div[3]/header',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.remove();
 
 // Popup helper side chat
 document.querySelector("#wa-popovers-bucket").remove();
