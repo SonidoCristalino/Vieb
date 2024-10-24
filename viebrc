@@ -23,6 +23,8 @@ set spelllang+=es-AR
 set sponsorblockcategories={"sponsor":"lime","intro":"cyan","outro":"blue","interaction":"red","selfpromo":"yellow","music_offtopic":""}
 set suggesttopsites=0
 set timeoutlen=9000
+set useragent=
+set useragent+=%firefox
 set userscript
 
 " Mappings
