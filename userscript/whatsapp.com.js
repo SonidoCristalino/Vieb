@@ -11,14 +11,12 @@
 
 // Select an element using "Copy full XPath" option through DevTools
 
-// Search bar
-document.evaluate('/html/body/div[1]/div/div/div[2]/div[3]/div/div[1]',
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.remove();
+// // Search bar
+document.querySelector("#side > div._ak9t").remove();
 
 // // Chats header 
-document.evaluate('/html/body/div[1]/div/div/div[2]/div[3]/header',
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
-    .singleNodeValue.setAttribute("style", "display: none");
+// So far, the head of the elements that have been archived could not be
+// decoupled. Archived node depends on header node. 
 
 // Popup helper side chat
 document.querySelector("#wa-popovers-bucket").remove();
