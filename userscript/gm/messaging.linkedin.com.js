@@ -1,3 +1,11 @@
+
+// ██╗     ██╗███╗   ██╗██╗  ██╗███████╗██████╗ ██╗███╗   ██╗
+// ██║     ██║████╗  ██║██║ ██╔╝██╔════╝██╔══██╗██║████╗  ██║
+// ██║     ██║██╔██╗ ██║█████╔╝ █████╗  ██║  ██║██║██╔██╗ ██║
+// ██║     ██║██║╚██╗██║██╔═██╗ ██╔══╝  ██║  ██║██║██║╚██╗██║
+// ███████╗██║██║ ╚████║██║  ██╗███████╗██████╔╝██║██║ ╚████║
+// ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝
+
 // ==UserScript==
 // @name        F*ck Banner LinkedIn
 // @namespace   Violentmonkey Scripts
@@ -7,38 +15,60 @@
 // @author      Me
 // @license     MIT
 // @description Improve Linkedin chat page deleting some useless objects
- 
+
 // @inject-into document
 // @noframes
 // ==/UserScript==
 
-setTimeout(() => {
-  
-    let $$ = (s) => [document.querySelector(s)];
-    
-    // Clearing navigation upgrading the feeds width 
-    $$(".scaffold-layout__main")[0].setAttribute("style", "width: 90vh");
-    $$(".scaffold-layout__aside")[0].setAttribute("style", "display: none");
-    
-    // Doing a better chat height
-    $$('#messaging .scaffold-layout__content')[0].setAttribute('style', 'display: unset');
-    $$('#main')[0].setAttribute('style', 'height: 100vh');
+// Remove stupid right chat element
+document.evaluate('/html/body/div[6]/div[3]/div[2]/div/div/aside',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "display: none");
 
-    // Remove inecessary Premium link
-    $$(".premium-upsell-link")[0].setAttribute("style", "display: none");
+// We define the correct height of the chat (this is necessary to correct the chat width)
+document.evaluate('/html/body/div[6]/div[3]/div[2]/div/div/main',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "height: 100vh");
 
-    // Remove inecessary primary search bar
-    $$("#global-nav-search")[0].setAttribute("style", "display: none");
+// We define the correct width of the chat 
+document.evaluate('/html/body/div[6]/div[3]/div[2]/div/div/main',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "width: 170vh");
 
-    // Remove inecessary secondary search bar
-    $$(".msg-search-form")[0].setAttribute("style", "display: none");
+// // Doing a better chat height
+// $$('#messaging .scaffold-layout__content')[0].setAttribute('style', 'display: unset');
+// $$('#main')[0].setAttribute('style', 'height: 100vh');
 
-    // Remove messages filter
-    document.querySelectorAll(".msg-conversations-container__title-row").forEach(Element => {
-        Element.remove();});
+// Remove inecessary Premium link
+document.evaluate('/html/body/div[6]/header/div/nav/ul/li[8]/div',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "display: none");
 
-    // Remove all the config setting in each conversation card
-    document.querySelectorAll(".msg-conversation-card__inbox-shortcuts").forEach(Element => {
-        Element.remove();})
+// Remove For Bussines button into the uppon right corner
+document.evaluate('/html/body/div[6]/header/div/nav/ul/li[7]',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "display: none");
 
-}, 3000)
+// Remove unecessary primary chat header with all those unecessary filters
+document.evaluate('/html/body/div[6]/div[3]/div[2]/div/div/main/div/div[1]',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "display: none");
+
+// Remove unecessary primary search bar
+document.evaluate('/html/body/div[6]/header/div/div',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "display: none");
+
+// Remove unecessary secondary search bar
+document.evaluate('/html/body/div[6]/div[3]/div[2]/div/div/main/div/div[1]/div[1]/div[1]/div',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "display: none");
+
+// // Remove messages filter
+// document.querySelectorAll(".msg-conversations-container__title-row").forEach(Element => {
+//     Element.remove();});
+
+// // Remove all the config setting in each conversation card
+// document.querySelectorAll(".msg-conversation-card__inbox-shortcuts").forEach(Element => {
+//     Element.remove();})
+
