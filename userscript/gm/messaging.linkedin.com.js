@@ -35,10 +35,6 @@ document.evaluate('/html/body/div[6]/div[3]/div[2]/div/div/main',
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
     .singleNodeValue.setAttribute("style", "width: 170vh");
 
-// // Doing a better chat height
-// $$('#messaging .scaffold-layout__content')[0].setAttribute('style', 'display: unset');
-// $$('#main')[0].setAttribute('style', 'height: 100vh');
-
 // Remove inecessary Premium link
 document.evaluate('/html/body/div[6]/header/div/nav/ul/li[8]/div',
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
@@ -64,11 +60,21 @@ document.evaluate('/html/body/div[6]/div[3]/div[2]/div/div/main/div/div[1]/div[1
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
     .singleNodeValue.setAttribute("style", "display: none");
 
-// // Remove messages filter
-// document.querySelectorAll(".msg-conversations-container__title-row").forEach(Element => {
-//     Element.remove();});
+// # ===============================================
+// # Function for remove items 
+// # ===============================================
 
-// // Remove all the config setting in each conversation card
-// document.querySelectorAll(".msg-conversation-card__inbox-shortcuts").forEach(Element => {
-//     Element.remove();})
+// Common selector part
+const commonSelector = "/html/body/div[6]/div[3]/div[2]/div/div/main/div/div[2]/div[1]/div[2]/ul/li";
+
+// Remove first ten config setting icon in each conversation card. 
+// This is for select the right chat conversation without vision problem. 
+for (let i = 2; i <= 10; i++) {
+    const selector = `${commonSelector}[${i}]/div/div[2]`;
+    const element = document.evaluate(selector, document, null, 
+        XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    if (element) {
+        element.remove();
+    }
+}
 
