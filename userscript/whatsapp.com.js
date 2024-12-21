@@ -26,8 +26,11 @@ document.querySelector("#side > div.x1ky8ojb.x78zum5.x1q0g3np.x1a02dak.x2lah0s.x
 
 // Left side Setting bar. 
 // NOTE: If you want the settings to appear (such as to mute the sounds of tabs) you must comment the line below.
-document.evaluate('/html/body/div[1]/div/div/div/header', 
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.remove();
+document.evaluate('/html/body/div[1]/div/div/div[2]/div/header',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+    .singleNodeValue.setAttribute("style", "display: none");
+    //.remove();
+
 
 // ###############################################################################
 // #                             Elements Modifications                          #
