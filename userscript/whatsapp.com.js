@@ -9,9 +9,10 @@
 // #                             Elements Removal                                #
 // ###############################################################################
 
-// Select an element using "Copy full XPath" option through DevTools
+// Select an element using "Copy full XPath" option through DevTools. For
+// improve your experience, please use Google Chrome browser instead. 
 
-// // Search bar
+// Search bar
 document.querySelector("#side > div._ak9t").remove();
 
 // // Chats header 
@@ -19,15 +20,18 @@ document.querySelector("#side > div._ak9t").remove();
 // decoupled. Archived node depends on header node. 
 
 // Popup helper side chat
-document.querySelector("#wa-popovers-bucket").remove();
+document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[1]',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+    .setAttribute("style", "display: none");
 
 // Chat filter 
-document.querySelector("#side > div.x1ky8ojb.x78zum5.x1q0g3np.x1a02dak.x2lah0s.x3pnbk8.xfex06f.xeuugli.x2lwn1j.x1nn3v0j.x1ykpatu.x1swvt13.x1pi30zi").remove();
 
 // Left side Setting bar. 
-// NOTE: If you want the settings to appear (such as to mute the sounds of tabs) you must comment the line below.
-document.evaluate('/html/body/div[1]/div/div/div/header', 
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.remove();
+// NOTE: If you want the settings to appear (such as to mute the sounds of
+// tabs) you must comment the line below.
+document.evaluate('/html/body/div[1]/div/div/div[3]/div/header',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+    .setAttribute("style", "display: none");
 
 // ###############################################################################
 // #                             Elements Modifications                          #
@@ -35,7 +39,7 @@ document.evaluate('/html/body/div[1]/div/div/div/header',
 
 // The margin of the archived chats is removed so that it does not overlap with
 // the chats behind. 
-document.evaluate('/html/body/div[1]/div/div/div/div[2]/div[1]',
+document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[2]/div[1]',
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
     .singleNodeValue.setAttribute("style", "margin-left: 0px");
 
@@ -48,7 +52,6 @@ document.querySelector("#pane-side > button").setAttribute("style", "display: no
 
 // Use a function to set or unset Archive visibility
 (function() {
-    'use strict';
 
     var elemento = document.querySelector("#pane-side > button");
     var visible = false;
