@@ -10,6 +10,7 @@ set followelement+=inputs-insert
 set followelement+=inputs-click
 set followelement+=media
 set followelement+=image
+set guifontsize=20
 set modifiers=
 set modifiers+=<Shift>
 set newtaburl=~/.config/scripts/startpage/index.html
