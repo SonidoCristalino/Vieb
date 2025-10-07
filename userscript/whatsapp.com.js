@@ -19,21 +19,27 @@
 document.querySelector("#side > div._ak9t").remove();
 
 // Popup helper side chat
-document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[1]',
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-    .setAttribute("style", "display: none");
+// document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[1]',
+//     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+//     .setAttribute("style", "display: none");
 
 // Left side Setting bar. 
 // NOTE: If you want the settings to appear (such as to mute the sounds of
 // tabs) you must comment the line below.
-document.evaluate('/html/body/div[1]/div/div/div[3]/div/header',
+document.evaluate('/html/body/div[1]/div/div/div[1]/div/div[3]/div/header',
+    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE,
+    null).singleNodeValue.style.display = 'none';
+
+// Chats header 
+document.evaluate('/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div/div[1]',
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
     .setAttribute("style", "display: none");
 
-// Chats header 
-document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/header', 
+// Whatsapp header 
+document.evaluate('/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/header',
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
     .setAttribute("style", "display: none");
+
 
 // ###############################################################################
 // #                             Elements Modifications                          #
@@ -41,7 +47,7 @@ document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/header',
 
 // The margin of the archived chats is removed so that it does not overlap with
 // the chats behind. 
-document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[2]/div[1]',
+document.evaluate('/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[2]/div[1]',
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
     .singleNodeValue.setAttribute("style", "margin-left: 0px");
 
