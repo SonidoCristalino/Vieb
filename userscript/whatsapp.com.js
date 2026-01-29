@@ -1,83 +1,102 @@
-//      ██╗    ██╗██╗  ██╗ █████╗ ████████╗███████╗ █████╗ ██████╗ ██████╗ 
-//      ██║    ██║██║  ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔══██╗
-//      ██║ █╗ ██║███████║███████║   ██║   ███████╗███████║██████╔╝██████╔╝
-//      ██║███╗██║██╔══██║██╔══██║   ██║   ╚════██║██╔══██║██╔═══╝ ██╔═══╝ 
-//      ╚███╔███╔╝██║  ██║██║  ██║   ██║   ███████║██║  ██║██║     ██║     
-//       ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝     
+// ==UserScript==
+// @name         WhatsApp Web - Limpieza y Archivados (Lógica Original)
+// @namespace    http://tampermonkey.net/
+// @version      2.0
+// @description  Limpia interfaz (CSS) de la página de Whatsapp
+// @author       DevOps Features
+// @match        https://web.whatsapp.com/*
+// @grant        GM_addStyle
+// @run-at       document-idle
+// ==/UserScript==
 
-// ###############################################################################
-// #                             Elements Removal                                #
-// ###############################################################################
-
-// Select an element using "Copy full XPath" option through DevTools. For
-// improve your experience, please use Google Chrome browser instead. 
-
-// ¡IMPORTANT!: To debug the code, each function must be tested on different sides
-// of the script. The functions fail in waterfall.
-
-// Search bar
-document.querySelector("#side > div._ak9t").remove();
-
-// Popup helper side chat
-// document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[1]',
-//     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-//     .setAttribute("style", "display: none");
-
-// Left side Setting bar. 
-// NOTE: If you want the settings to appear (such as to mute the sounds of
-// tabs) you must comment the line below.
-document.evaluate('/html/body/div[1]/div/div/div[1]/div/div[3]/div/header',
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-    .setAttribute("style", "display: none");
-    // .style.display = 'none';
-
-// Chats header 
-document.evaluate('/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[1]',
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-    .setAttribute("style", "display: none");
-
-// Whatsapp header 
-document.evaluate('/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/header/header',
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-    .setAttribute("style", "display: none");
-
-// ###############################################################################
-// #                             Elements Modifications                          #
-// ###############################################################################
-
-// The margin of the archived chats is removed so that it does not overlap with
-// the chats behind. 
-document.evaluate('/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div[1]',
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
-    .singleNodeValue.setAttribute("style", "margin-left: 0px");
-
-// ###############################################################################
-// #                                 Functions                                   #
-// ###############################################################################
-
-// At the beginning unset Archive botton visibility 
-document.querySelector("#pane-side > button").setAttribute("style", "display: none");
-
-// Use a function to set or unset Archive visibility
 (function() {
+    'use strict';
 
-    var elemento = document.querySelector("#pane-side > button");
-    var visible = false;
+    // =========================================================================
+    // PARTE 1: LIMPIEZA VISUAL
+    // =========================================================================
 
-    function alternarVisibilidad() {
-        if (visible) {
-            elemento.style.display = "none";
-        } else {
-            elemento.style.display = ""; 
+    const customCSS = `
+        /* 1. ELIMINAR CABECERA */
+        header:has(span[data-icon="wa-wordmark-refreshed"]) {
+            display: none !important;
         }
-        visible = !visible;
+
+        /* 2. ELIMINAR BARRA DE BÚSQUEDA */
+        #side div:has(span[data-icon="search-refreshed-thin"]) {
+            display: none !important;
+        }
+
+        /* 3. ELIMINAR BARRA DE FILTROS */
+        #side div[aria-label="chat-list-filters"] {
+            display: none !important;
+        }
+
+        /* AJUSTE DE SEGURIDAD */
+        #pane-side {
+            height: 100% !important;
+            top: 0 !important;
+        }
+    `;
+
+    function addGlobalStyle(css) {
+        const head = document.getElementsByTagName('head')[0];
+        if (!head) { return; }
+        const style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = css;
+        head.appendChild(style);
     }
 
-    // Add shortkey to set Archive visibility
-    document.addEventListener('keydown', function(event) {
-        if (event.altKey && event.shiftKey && event.key === 'M') {
-            alternarVisibilidad();
+    if (typeof GM_addStyle !== 'undefined') {
+        GM_addStyle(customCSS);
+    } else {
+        addGlobalStyle(customCSS);
+    }
+
+    // =========================================================================
+    // PARTE 2: LÓGICA DE CHATS ARCHIVADOS 
+    // =========================================================================
+
+    // Esperamos 2 segundos para asegurar que el elemento exista antes de asignarlo a la variable
+    setTimeout(function() {
+
+        // AJUSTE NECESARIO: En lugar de "#pane-side > button", usamos el selector seguro del icono.
+        // Esto es vital porque la estructura HTML de WhatsApp cambió.
+        var elemento = document.querySelector('span[data-icon="archive-refreshed"]');
+        
+        // Si encontramos el icono, subimos al botón contenedor. Si no, cortamos ejecución.
+        if (elemento) {
+            elemento = elemento.closest('button');
+        } else {
+            console.log("No se encontró el botón de Archivados.");
+            return;
         }
-    });
+
+        // 1. Estado inicial: Oculto
+        elemento.style.display = "none";
+        var visible = false;
+
+        // 2. Función para alternar
+        function alternarVisibilidad() {
+            if (visible) {
+                elemento.style.display = "none";
+            } else {
+                // Usamos 'flex' o '' para mostrarlo correctamente en WhatsApp
+                elemento.style.display = "flex"; 
+            }
+            visible = !visible;
+            console.log("Archivados visible: " + visible);
+        }
+
+        // 3. Atajo de teclado
+        document.addEventListener('keydown', function(event) {
+            // Se agrega soporte para 'm' minúscula y mayúscula por seguridad
+            if (event.altKey && event.shiftKey && (event.key === 'M' || event.key === 'm')) {
+                alternarVisibilidad();
+            }
+        });
+        
+    }, 2000); // Retardo de seguridad al inicio
 
 })();
