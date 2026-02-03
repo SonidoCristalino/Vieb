@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         WhatsApp Web - Limpieza y Archivados (Lógica Original)
+// @name         WhatsApp Web - Limpieza, Archivados y Buscador (Solo Ocultar)
 // @namespace    http://tampermonkey.net/
-// @version      2.0
-// @description  Limpia interfaz (CSS) de la página de Whatsapp
+// @version      4.0
+// @description  Limpia interfaz. Oculta Buscador y Archivados por defecto.
 // @author       DevOps Features
 // @match        https://web.whatsapp.com/*
 // @grant        GM_addStyle
@@ -13,7 +13,7 @@
     'use strict';
 
     // =========================================================================
-    // PARTE 1: LIMPIEZA VISUAL
+    // PARTE 1: LIMPIEZA VISUAL (CSS)
     // =========================================================================
 
     const customCSS = `
@@ -22,10 +22,8 @@
             display: none !important;
         }
 
-        /* 2. ELIMINAR BARRA DE BÚSQUEDA */
-        #side div:has(span[data-icon="search-refreshed-thin"]) {
-            display: none !important;
-        }
+        /* NOTA: Eliminada la regla CSS de la barra de búsqueda.
+           La ocultaremos vía JS para no interferir con la carga nativa. */
 
         /* 3. ELIMINAR BARRA DE FILTROS */
         #side div[aria-label="chat-list-filters"] {
@@ -55,17 +53,26 @@
     }
 
     // =========================================================================
-    // PARTE 2: LÓGICA DE CHATS ARCHIVADOS 
+    // PARTE 2: LÓGICA DE ELEMENTOS (Archivados y Buscador)
     // =========================================================================
 
-    // Esperamos 2 segundos para asegurar que el elemento exista antes de asignarlo a la variable
+    // Esperamos 2 segundos para asegurar que los elementos existan
     setTimeout(function() {
 
-        // AJUSTE NECESARIO: En lugar de "#pane-side > button", usamos el selector seguro del icono.
-        // Esto es vital porque la estructura HTML de WhatsApp cambió.
+        // --- A. OCULTAR BARRA DE BÚSQUEDA (Solo ocultar) ---
+        // Usamos el selector del icono que ya sabemos que funciona
+        var searchBar = document.querySelector('#side div:has(span[data-icon="search-refreshed-thin"])');
+        
+        if (searchBar) {
+            searchBar.style.display = "none";
+            console.log("Barra de búsqueda ocultada.");
+        } else {
+            console.log("No se encontró la barra de búsqueda.");
+        }
+
+        // --- B. LÓGICA DE CHATS ARCHIVADOS ---
         var elemento = document.querySelector('span[data-icon="archive-refreshed"]');
         
-        // Si encontramos el icono, subimos al botón contenedor. Si no, cortamos ejecución.
         if (elemento) {
             elemento = elemento.closest('button');
         } else {
@@ -77,21 +84,19 @@
         elemento.style.display = "none";
         var visible = false;
 
-        // 2. Función para alternar
+        // 2. Función para alternar visibilidad
         function alternarVisibilidad() {
             if (visible) {
                 elemento.style.display = "none";
             } else {
-                // Usamos 'flex' o '' para mostrarlo correctamente en WhatsApp
                 elemento.style.display = "flex"; 
             }
             visible = !visible;
             console.log("Archivados visible: " + visible);
         }
 
-        // 3. Atajo de teclado
+        // 3. Atajo de teclado (Solo para Archivados)
         document.addEventListener('keydown', function(event) {
-            // Se agrega soporte para 'm' minúscula y mayúscula por seguridad
             if (event.altKey && event.shiftKey && (event.key === 'M' || event.key === 'm')) {
                 alternarVisibilidad();
             }
