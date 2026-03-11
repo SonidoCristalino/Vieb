@@ -60,9 +60,10 @@
     setTimeout(function() {
 
         // --- A. OCULTAR BARRA DE BÚSQUEDA (Solo ocultar) ---
-        // Usamos el selector del icono que ya sabemos que funciona
-        var searchBar = document.querySelector('#side div:has(span[data-icon="search-refreshed-thin"])');
-        
+        // Ubicar el input de búsqueda y ascender a su contenedor principal
+        var searchInput = document.querySelector('input[aria-label="Buscar un chat o iniciar uno nuevo"]');
+        var searchBar = searchInput ? searchInput.closest('div._ak9t') : null;
+
         if (searchBar) {
             searchBar.style.display = "none";
             console.log("Barra de búsqueda ocultada.");
