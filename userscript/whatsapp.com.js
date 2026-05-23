@@ -61,8 +61,8 @@
 
         // --- A. OCULTAR BARRA DE BÚSQUEDA (Solo ocultar) ---
         // Ubicar el input de búsqueda y ascender a su contenedor principal
-        var searchInput = document.querySelector('input[aria-label="Buscar un chat o iniciar uno nuevo"]');
-        var searchBar = searchInput ? searchInput.closest('div._ak9t') : null;
+        var searchInput = document.querySelector('[data-testid="chat-list-search-container"]');
+        var searchBar = searchInput ? searchInput.parentElement : null;
 
         if (searchBar) {
             searchBar.style.display = "none";
