@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        F*ck Banner Poringa
 // @namespace   Violentmonkey Scripts
-// @match       http://www.poringa.net/posts/*
+// @match       https://www.poringa.net/posts/*
 // @grant       none
 // @version     1.0
 // @author      Me
@@ -10,9 +10,12 @@
  
 // ==/UserScript==
 
-// Remove right banner 
-document.querySelector("#page > div:nth-child(4) > div > div").remove();
+// Oculta sidebar y fuerza la expansión y centrado del contenedor principal
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        .sidebar.fixable { display: none !important; }
+        .v6-content { width: 100% !important; max-width: 100% !important; margin: 0 auto !important; float: none !important; padding-right: 0 !important; }
+        .container-post { margin: 0 auto !important; float: none !important; }
+    </style>
+`);
 
-// Decrease margins to better view in post page
-document.querySelector("#page > div:nth-child(4) > div > main > div.container-post > div.container-post__inner")
-    .setAttribute("style", "margin-right: -200px");
